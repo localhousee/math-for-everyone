@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <router-view />
+  <p class="text-pink-600">Main Menu</p>
 </template>
