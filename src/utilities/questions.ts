@@ -1,5 +1,5 @@
 export const arrayOfLevels = [
-  ["Introduction to two-dimentional and three-dimentional figure"],
+  ["Introduction to whole number until 50", "Addition and subtraction of whole number until 20","Introduction to two-dimentional and three-dimentional figure"],
   // ["Introduction to whole number until 50", "Addition and subtraction of whole number until 20", "Introduction to two-dimentional and three-dimentional figure", "Determine length and weight with non-standard units", "Comparing length, weight, length of time, and temperature"],
   ["Introduction to whole number until 100", "Addition and subtraction of whole number until 100", "Multiplication and division of whole number until 100", "Introduction to currency values and equivalence", "Determine length, weight, and time in standard units", "Introduction to the fractions 1/2, 1/3 , and 1/4", "Characteristics of two-dimentional and three-dimentional figure"],
   ["Introduction to whole numbers up to 1000 and simple fractions", "Relationship between standard units for length, weight, and time", "Simetri lipat dan simetri putar pada bangun datar", "Introduction to angles and types of angles", "Characteristics of various two-dimentional figure", "Introduction to simple drawing diagrams"],
@@ -59,8 +59,8 @@ const introductionToWholeNumber = (limit: number) => {
     operator = Math.random() < 0.5;
     answer = operator ? question - number : question + number;
   }
-  const questionText = `What's ${number} number ${operator ? "before": "after"} ${question}?`;
-  const result: [string, number] = [questionText, answer];
+  const questionText = `<p class="text-center">What's ${number} number ${operator ? "before": "after"} ${question}?</p>`;
+  const result = [questionText, answer.toString()];
   return result;
 }
 
@@ -75,8 +75,8 @@ const additionAndSubtraction = (limit: number) => {
     operator = Math.random() < 0.5;
     answer = operator ? first - second : first + second;
   }
-  const questionText = `${first} ${operator ? "-": "+"} ${second} = ?`;
-  const result: [string, number] = [questionText, answer];
+  const questionText = `<p class="text-center">${first} ${operator ? "-": "+"} ${second} = ?</p>`;
+  const result = [questionText, answer.toString()];
   return result;
 }
 
