@@ -11,7 +11,7 @@ const level = ref(1);
 <template>
   <Main title="Math for <br /> Everyone">
     <div class="flex justify-center w-full">
-      <div class="flex flex-col justify-center mx-auto w-full px-24 lg:px-0 lg:w-[12rem] py-6 space-y-4 text-center">
+      <div class="flex flex-col justify-center mx-auto w-full px-24 lg:px-0 sm:max-w-sm lg:w-[12rem] py-6 space-y-4 text-center">
         <button @click="open = true"
           class="py-2 lg:py-4 lg:font-bold bg-transparent hover:bg-pink-300 text-pink-900 w-full rounded-full border-2 border-transparent hover:border-pink-900">Start</button>
         <router-link to="/help"
