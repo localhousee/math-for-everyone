@@ -1,5 +1,6 @@
 export const arrayOfLevels = [
-  ["Introduction to whole number until 50", "Addition and subtraction of whole number until 20", "Determine length and weight with non-standard units", "Comparing length, weight, length of time, and temperature"],
+  ["Introduction to whole number until 50"],
+  // ["Introduction to whole number until 50", "Addition and subtraction of whole number until 20", "Determine length and weight with non-standard units", "Comparing length, weight, length of time, and temperature"],
   ["Introduction to whole number until 100", "Addition and subtraction of whole number until 100", "Multiplication and division of whole number until 100", "Introduction to currency values and equivalence", "Determine length, weight, and time in standard units", "Introduction to the fractions 1/2, 1/3 , and 1/4", "Characteristics of two-dimentional figure and three-dimentional figure"],
   ["Introduction to whole numbers up to 1000 and simple fractions", "Relationship between standard units for length, weight, and time", "Simetri lipat dan simetri putar pada bangun datar", "Introduction to angles and types of angles", "Characteristics of various two-dimentional figure", "Introduction to simple drawing diagrams"],
   ["Introduction of equivalent fractions with pictures", "Determine factor, common factor, Greatest Common Divisor (GCD), and Least Common Multiple (LCM)", "Rounding up the results of length and weight measurements", "Perimeter and area of squares, rectangles and triangles", "Squared numbers and square root numbers", "Simple bar chart introduction", "Determine the size of the angle on a two-dimentional figure in standard units"],
@@ -15,7 +16,15 @@ export const arrayOfLevels = [
 
 export function generateQuestion(level: number) {
   let title = getRandomTheory(level - 1);
-  return title;
+  let description = "";
+  let answer = 0;
+  if (title.includes("Introduction to whole number until")) {
+    const limit = title.split(" ").pop()!;
+    let result = introductionToWholeNumber(parseInt(limit));
+    description = result[0];
+    answer = result[1];
+  }
+  return { title, description, answer };
 };
 
 const getRandomNumber = (min: number, max: number): number => {
@@ -30,11 +39,17 @@ const getRandomTheory = (value: number) => {
 }
 
 const introductionToWholeNumber = (limit: number) => {
-  const question = getRandomNumber(0, limit - 4);
-  const number = getRandomNumber(1, 4);
-  const operator = Math.random() < 0.5;
-  const answer = operator ? question - number : question + number;
-  const questionText = `What's ${number} ${operator ? "before": "after"} ${question}`;
+  let answer = 0;
+  let question = 0;
+  let number = 0;
+  let operator = false;
+  while (answer <= 0) {
+    question = getRandomNumber(0, limit - 4);
+    number = getRandomNumber(1, 4);
+    operator = Math.random() < 0.5;
+    answer = operator ? question - number : question + number;
+  }
+  const questionText = `What's ${number} number ${operator ? "before": "after"} ${question}`;
   const result: [string, number] = [questionText, answer];
   return result;
 }
