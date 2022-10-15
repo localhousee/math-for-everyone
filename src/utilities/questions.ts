@@ -1,5 +1,5 @@
 export const arrayOfLevels = [
-  ["Introduction to whole number until 50", "Addition and subtraction of whole number until 20","Introduction to two-dimentional and three-dimentional figure"],
+  ["Comparing length, weight, length of time, and temperature"],
   // ["Introduction to whole number until 50", "Addition and subtraction of whole number until 20", "Introduction to two-dimentional and three-dimentional figure", "Determine length and weight with non-standard units", "Comparing length, weight, length of time, and temperature"],
   ["Introduction to whole number until 100", "Addition and subtraction of whole number until 100", "Multiplication and division of whole number until 100", "Introduction to currency values and equivalence", "Determine length, weight, and time in standard units", "Introduction to the fractions 1/2, 1/3 , and 1/4", "Characteristics of two-dimentional and three-dimentional figure"],
   ["Introduction to whole numbers up to 1000 and simple fractions", "Relationship between standard units for length, weight, and time", "Simetri lipat dan simetri putar pada bangun datar", "Introduction to angles and types of angles", "Characteristics of various two-dimentional figure", "Introduction to simple drawing diagrams"],
@@ -17,7 +17,7 @@ export const arrayOfLevels = [
 export function generateQuestion(level: number) {
   let title = getRandomTheory(level - 1);
   let description = "";
-  let answer = 0;
+  let answer = "";
   if (title.includes("Introduction to whole number until")) {
     const limit = title.split(" ").pop()!;
     let result = introductionToWholeNumber(parseInt(limit));
@@ -30,7 +30,11 @@ export function generateQuestion(level: number) {
     answer = result[1];
   } else if (title.includes("two-dimentional and three-dimentional")) {
     const type = title.split(" ").shift()!;
-    let result = dimentionalFigure(type);
+    let result = dimentionalFigure(type)!;
+    description = result[0];
+    answer = result[1];
+  } else if (title.includes("length, weight, length of time, and temperature")) {
+    let result = lengthWeightAndTemperature()!;
     description = result[0];
     answer = result[1];
   }
@@ -59,7 +63,7 @@ const introductionToWholeNumber = (limit: number) => {
     operator = Math.random() < 0.5;
     answer = operator ? question - number : question + number;
   }
-  const questionText = `<p class="text-center">What's ${number} number ${operator ? "before": "after"} ${question}?</p>`;
+  const questionText = `<p class="text-center">What's ${number} number ${operator ? "before" : "after"} ${question}?</p>`;
   const result = [questionText, answer.toString()];
   return result;
 }
@@ -75,7 +79,7 @@ const additionAndSubtraction = (limit: number) => {
     operator = Math.random() < 0.5;
     answer = operator ? first - second : first + second;
   }
-  const questionText = `<p class="text-center">${first} ${operator ? "-": "+"} ${second} = ?</p>`;
+  const questionText = `<p class="text-center">${first} ${operator ? "-" : "+"} ${second} = ?</p>`;
   const result = [questionText, answer.toString()];
   return result;
 }
@@ -92,6 +96,25 @@ const dimentionalFigure = (type: string) => {
       answer = threeDimentional[getRandomNumber(0, threeDimentional.length - 1)].replace(" ", "-");
     }
     const questionText = `<img src="/dimentional-figure/${answer}.png" alt="image" class="w-1/2 h-1/2 mx-auto" />`;
+    const result: [string, string] = [questionText, answer];
+    return result;
+  }
+}
+
+const lengthWeightAndTemperature = () => {
+  const lengths = [{ name: "Inch", length: 2.5 }, { name: "Feet", length: 30 }, { name: "Yard", length: 90 }, { name: "Miles", length: 16000 }];
+  const temperatures = ["celcius", "kelvin", "reamur", "Fahrenheit"];
+  const weights = ["Tonne", "Ounce", "Pound", "Kilogram", "Hectogram", "Gram", "Decigram", "Centigram", "Miligram"];
+  const lengthsOfTime = ["second", "minute", "hour", "day", "month", "year"];
+
+  const choice = getRandomNumber(1, 1);
+  if (choice === 1) {
+    const firstNumber = getRandomNumber(1, 100);
+    const firstUnit = lengths[getRandomNumber(0, lengths.length - 1)];
+    const secondNumber = getRandomNumber(1, 100);
+    const secondUnit = lengths[getRandomNumber(0, lengths.length - 1)];
+    const answer = firstNumber * firstUnit.length > secondNumber * secondUnit.length ? ">" : "<";
+    const questionText = `<p class="text-center">Type "<" or ">" <br /> ${firstNumber} ${firstUnit.name} ... ${secondNumber} ${secondUnit.name}</p>`;
     const result: [string, string] = [questionText, answer];
     return result;
   }
