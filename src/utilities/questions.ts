@@ -101,20 +101,40 @@ const dimentionalFigure = (type: string) => {
 }
 
 const lengthWeightAndTemperature = () => {
-  const lengths = [{ name: "Inch", length: 2.5 }, { name: "Feet", length: 30 }, { name: "Yard", length: 90 }, { name: "Miles", length: 16000 }];
-  const temperatures = ["celcius", "kelvin", "reamur", "Fahrenheit"];
-  const weights = ["Tonne", "Ounce", "Pound", "Kilogram", "Hectogram", "Gram", "Decigram", "Centigram", "Miligram"];
-  const lengthsOfTime = ["second", "minute", "hour", "day", "month", "year"];
+  type Unit = { name: string; count: number };
+  const lengths: Unit[] = [{ name: "Inch", count: 2.5 }, { name: "Feet", count: 30 }, { name: "Yard", count: 90 }, { name: "Miles", count: 16000 }];
+  const temperatures: Unit[] = [{ name: "Celcius", count: 5 }, { name: "Kelvin", count: 5 }, { name: "Reamur", count: 4 }, { name: "Fahrenheit", count: 9 }];
+  const weights: Unit[] = [{ name: "Tonne", count: 1000000000 }, { name: "Ounce", count: 28349.5 }, { name: "Pound", count: 453592 }, { name: "Kilogram", count: 1000000 }, { name: "Hectogram", count: 100000 }, { name: "Gram", count: 1000 }, { name: "Decigram", count: 100 }, { name: "Centigram", count: 10 }, { name: "Miligram", count: 1 }];
+  const lengthsOfTime: Unit[] = [{ name: "Second", count: 1 }, { name: "Minute", count: 60 }, { name: "Hour", count: 3600 }, { name: "Day", count: 86400 }, { name: "Month", count: 2592000 }, { name: "Year", count: 31104000 }];
 
-  const choice = getRandomNumber(1, 1);
-  if (choice === 1) {
-    const firstNumber = getRandomNumber(1, 100);
-    const firstUnit = lengths[getRandomNumber(0, lengths.length - 1)];
-    const secondNumber = getRandomNumber(1, 100);
-    const secondUnit = lengths[getRandomNumber(0, lengths.length - 1)];
-    const answer = firstNumber * firstUnit.length > secondNumber * secondUnit.length ? ">" : "<";
-    const questionText = `<p class="text-center">Type "<" or ">" <br /> ${firstNumber} ${firstUnit.name} ... ${secondNumber} ${secondUnit.name}</p>`;
-    const result: [string, string] = [questionText, answer];
-    return result;
+  const choice = getRandomNumber(1, 4);
+  let firstNumber = 0;
+  let secondNumber = 0;
+  let firstUnit: Unit = { name: "", count: 0 };
+  let secondUnit: Unit = { name: "", count: 0 };
+  let arr: Unit[] = [];
+  if (choice === 1) arr = lengths;
+  else if (choice === 2) arr = temperatures;
+  else if (choice === 3) arr = weights;
+  else if (choice === 4) arr = lengthsOfTime;
+
+  firstUnit = arr[getRandomNumber(0, arr.length - 1)];
+  secondUnit = arr[getRandomNumber(0, arr.length - 1)];
+  if (firstUnit.count < secondUnit.count) {
+    firstNumber = getRandomNumber(10, 100);
+    secondNumber = getRandomNumber(1, 10);
+  } else {
+    firstNumber = getRandomNumber(1, 10);
+    secondNumber = getRandomNumber(10, 100);
   }
+
+  if (firstUnit.name === "Fahrenheit") firstNumber += 32;
+  else if (secondUnit.name === "Fahrenheit") secondNumber += 32;
+  else if (firstUnit.name === "Kelvin") firstNumber += 273;
+  else if (secondUnit.name === "Kelvin") secondNumber += 273;
+
+  const answer = firstNumber * firstUnit.count > secondNumber * secondUnit.count ? ">" : "<";
+  const questionText = `<p class="text-center">Type "<" or ">" <br /> ${firstNumber} ${firstUnit.name} ... ${secondNumber} ${secondUnit.name}</p>`;
+  const result: [string, string] = [questionText, answer];
+  return result;
 }
