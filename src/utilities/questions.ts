@@ -1,7 +1,7 @@
 export const arrayOfLevels = [
-  ["Introduction to whole number until 50", "Addition and subtraction of whole number until 20", "Introduction to two-dimentional and three-dimentional figure", "Comparing length, weight, length of time, and temperature"],
-  ["Multiplication and division of whole number until 100"],
-  // ["Introduction to whole number until 100", "Addition and subtraction of whole number until 100", "Multiplication and division of whole number until 100", "Introduction to currency values and equivalence", "Determine length, weight, and time in standard units", "Introduction to the fractions 1/2, 1/3 , and 1/4", "Characteristics of two-dimentional and three-dimentional figure"],
+  ["Introduction to whole number until 50", "Addition and subtraction of whole number until 20", "Introduction to two-dimentional and three-dimentional figure", "Comparing length, weight, time, and temperature"],
+  ["Determine length, weight, time in standard units"],
+  // ["Introduction to whole number until 100", "Addition and subtraction of whole number until 100", "Multiplication and division of whole number until 100", "Determine length, weight, and time in standard units", "Introduction to the fractions 1/2, 1/3 , and 1/4", "Characteristics of two-dimentional and three-dimentional figure"],
   ["Introduction to whole numbers up to 1000 and simple fractions", "Relationship between standard units for length, weight, and time", "Simetri lipat dan simetri putar pada bangun datar", "Introduction to angles and types of angles", "Characteristics of various two-dimentional figure", "Introduction to simple drawing diagrams"],
   ["Introduction of equivalent fractions with pictures", "Determine factor, common factor, Greatest Common Divisor (GCD), and Least Common Multiple (LCM)", "Rounding up the results of length and weight measurements", "Perimeter and area of squares, rectangles and triangles", "Squared numbers and square root numbers", "Simple bar chart introduction", "Determine the size of the angle on a two-dimentional figure in standard units"],
   ["Adding and subtracting two fractions with different denominators", "Introduction to decimal fractions and percent", "Recognition of scale through floor plans", "Finding nets of cubes and blocks", "Presentation of data in the form of tables, bar and line charts"],
@@ -33,8 +33,9 @@ export function generateQuestion(level: number) {
     let result = dimentionalFigure(type)!;
     description = result[0];
     answer = result[1];
-  } else if (title.includes("length, weight, length of time, and temperature")) {
-    let result = lengthWeightAndTemperature()!;
+  } else if (title.includes("length, weight, time")) {
+    const type = title.split(" ").shift()!;
+    let result = lengthWeightAndTemperature(type)!;
     description = result[0];
     answer = result[1];
   } else if (title.includes("Multiplication and division of whole number until")) {
@@ -105,43 +106,63 @@ const dimentionalFigure = (type: string) => {
   }
 }
 
-const lengthWeightAndTemperature = () => {
+const lengthWeightAndTemperature = (type: string) => {
   type Unit = { name: string; count: number };
   const lengths: Unit[] = [{ name: "Inch", count: 2.5 }, { name: "Feet", count: 30 }, { name: "Yard", count: 90 }, { name: "Miles", count: 16000 }];
   const temperatures: Unit[] = [{ name: "Celcius", count: 5 }, { name: "Kelvin", count: 5 }, { name: "Reamur", count: 4 }, { name: "Fahrenheit", count: 9 }];
   const weights: Unit[] = [{ name: "Tonne", count: 1000000000 }, { name: "Ounce", count: 28349.5 }, { name: "Pound", count: 453592 }, { name: "Kilogram", count: 1000000 }, { name: "Hectogram", count: 100000 }, { name: "Gram", count: 1000 }, { name: "Decigram", count: 100 }, { name: "Centigram", count: 10 }, { name: "Miligram", count: 1 }];
   const lengthsOfTime: Unit[] = [{ name: "Second", count: 1 }, { name: "Minute", count: 60 }, { name: "Hour", count: 3600 }, { name: "Day", count: 86400 }, { name: "Month", count: 2592000 }, { name: "Year", count: 31104000 }];
 
-  const choice = getRandomNumber(1, 4);
   let firstNumber = 0;
   let secondNumber = 0;
   let firstUnit: Unit = { name: "", count: 0 };
   let secondUnit: Unit = { name: "", count: 0 };
   let arr: Unit[] = [];
-  if (choice === 1) arr = lengths;
-  else if (choice === 2) arr = temperatures;
-  else if (choice === 3) arr = weights;
-  else if (choice === 4) arr = lengthsOfTime;
+  
+  if (type === "Comparing") {
+    const choice = getRandomNumber(1, 4);
+    if (choice === 1) arr = lengths;
+    else if (choice === 2) arr = weights;
+    else if (choice === 3) arr = lengthsOfTime;
+    else if (choice === 4) arr = temperatures;
 
-  firstUnit = arr[getRandomNumber(0, arr.length - 1)];
-  secondUnit = arr[getRandomNumber(0, arr.length - 1)];
-  if (firstUnit.count < secondUnit.count) {
-    firstNumber = getRandomNumber(10, 100);
-    secondNumber = getRandomNumber(1, 10);
-  } else {
-    firstNumber = getRandomNumber(1, 10);
-    secondNumber = getRandomNumber(10, 100);
+    firstUnit = arr[getRandomNumber(0, arr.length - 1)];
+    secondUnit = arr[getRandomNumber(0, arr.length - 1)];
+    if (firstUnit.count < secondUnit.count) {
+      firstNumber = getRandomNumber(10, 100);
+      secondNumber = getRandomNumber(1, 10);
+    } else {
+      firstNumber = getRandomNumber(1, 10);
+      secondNumber = getRandomNumber(10, 100);
+    }
+  
+    if (firstUnit.name === "Fahrenheit") firstNumber += 32;
+    else if (secondUnit.name === "Fahrenheit") secondNumber += 32;
+    else if (firstUnit.name === "Kelvin") firstNumber += 273;
+    else if (secondUnit.name === "Kelvin") secondNumber += 273;
+
+    const answer = firstNumber * firstUnit.count > secondNumber * secondUnit.count ? ">" : "<";
+    const questionText = `<p class="text-center">Type "<" or ">" <br /> ${firstNumber} ${firstUnit.name} ... ${secondNumber} ${secondUnit.name}</p>`;
+    const result: [string, string] = [questionText, answer];
+    return result;
+  } else if (type === "Determine") {
+    const choice = getRandomNumber(1, 3);
+    if (choice === 1) arr = lengths;
+    else if (choice === 2) arr = weights;
+    else if (choice === 3) arr = lengthsOfTime;
+
+    firstUnit = arr[getRandomNumber(0, arr.length - 1)];
+    secondUnit = arr[getRandomNumber(0, arr.length - 1)];
+    while (firstUnit.count < secondUnit.count) {
+      firstUnit = arr[getRandomNumber(0, arr.length - 1)];
+      secondUnit = arr[getRandomNumber(0, arr.length - 1)];
+    }
+
+    firstNumber = getRandomNumber(1, 20);
+    const answer = firstNumber * firstUnit.count / secondUnit.count;
+    const questionText = `<p class="text-center">${firstNumber} ${firstUnit.name} = ... ${secondUnit.name}?</p>`;
+    return [questionText, answer.toString()];
   }
-
-  if (firstUnit.name === "Fahrenheit") firstNumber += 32;
-  else if (secondUnit.name === "Fahrenheit") secondNumber += 32;
-  else if (firstUnit.name === "Kelvin") firstNumber += 273;
-  else if (secondUnit.name === "Kelvin") secondNumber += 273;
-
-  const answer = firstNumber * firstUnit.count > secondNumber * secondUnit.count ? ">" : "<";
-  const questionText = `<p class="text-center">Type "<" or ">" <br /> ${firstNumber} ${firstUnit.name} ... ${secondNumber} ${secondUnit.name}</p>`;
-  const result: [string, string] = [questionText, answer];
-  return result;
 }
 
 const multiplicationAndDivision = (limit: number) => {
