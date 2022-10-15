@@ -1,10 +1,5 @@
 import { getRandomNumber, questionFormat } from "./helpers";
 
-interface Result {
-  question: string;
-  answer: string;
-}
-
 export const wholeNumber = (limit: number): Result => {
   let answer = 0;
   let start = 0;
