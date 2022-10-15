@@ -1,19 +1,19 @@
 import { getRandomTheory } from "./helpers";
 import { wholeNumber } from "./numbers";
+import { additionAndSubtraction } from "./arithmetic";
 
 export function generateQuestion(level: number) {
   const theory = getRandomTheory(level - 1);
-  if (theory.name === 'whole number') {
-    let title = theory.description;
+  const title = theory.description;
+  if (theory.name === "whole number") {
     const limit = theory.description.split(" ").pop()!;
     let { question, answer } = wholeNumber(parseInt(limit));
     return { title, question, answer };
+  } else if (theory.name = "addition and subtraction") {
+    const limit = theory.description.split(" ").pop()!;
+    let { question, answer } = additionAndSubtraction(parseInt(limit));
+    return { title, question, answer };
   }
-  // else if (title.includes("Addition and subtraction of whole number until")) {
-  //   const limit = title.split(" ").pop()!;
-  //   let result = additionAndSubtraction(parseInt(limit));
-  //   description = result[0];
-  //   answer = result[1];
   // } else if (title.includes("two-dimentional and three-dimentional")) {
   //   const type = title.split(" ").shift()!;
   //   let result = dimentionalFigure(type)!;

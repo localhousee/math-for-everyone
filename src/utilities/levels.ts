@@ -4,10 +4,10 @@ const level = [
 			name: "whole number",
 			description: "Introduction to whole number until 50"
 		},
-		// {
-		// 	name: "addition and subtraction",
-		// 	description: "Addition and subtraction of whole number until 20"
-		// },
+		{
+			name: "addition and subtraction",
+			description: "Addition and subtraction of whole number until 20"
+		},
 		// {
 		// 	name: "shapes",
 		// 	description: "Introduction to two-dimentional and three-dimentional figure"
