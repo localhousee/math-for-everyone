@@ -1,5 +1,12 @@
 import { getRandomNumber, questionFormat } from "./helpers";
 
+const arithmetic = (type: string, limit: number): Result => {
+  let question = "";
+  let answer = "";
+  if (type === "addition and subtraction") ({ question, answer } = additionAndSubtraction(limit));
+
+  return { question, answer };
+}
 export const additionAndSubtraction = (limit: number): Result => {
   let first = getRandomNumber(1, limit);
   let second = getRandomNumber(1, limit);
@@ -22,3 +29,5 @@ export const additionAndSubtraction = (limit: number): Result => {
   const answer = (isPlus ? first + second : first - second).toString();
   return { question, answer };
 }
+
+export default arithmetic;
