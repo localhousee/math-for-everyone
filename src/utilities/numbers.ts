@@ -1,6 +1,14 @@
 import { getRandomNumber, questionFormat } from "./helpers";
 
-export const wholeNumber = (limit: number): Result => {
+const numbers = (type: string, limit: number): Result => {
+  let question = "";
+  let answer = "";
+
+  if(type === "whole number") ({ question, answer } = wholeNumber(limit));
+
+  return { question, answer };
+}
+const wholeNumber = (limit: number): Result => {
   let answer = 0;
   let start = 0;
   let step = 0;
@@ -24,3 +32,5 @@ export const wholeNumber = (limit: number): Result => {
     answer: answer.toString()
   };
 }
+
+export default numbers;
