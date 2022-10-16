@@ -3,11 +3,12 @@ import { getRandomNumber, questionFormat } from "./helpers";
 const twoDimentional = ["Circle", "Kite", "Parallelogram", "Rectangle", "Rhombus", "Square", "Trapezoid", "Triangle"];
 const threeDimentional = ["Cone", "Cube", "Cylinder", "Rectangle Prism", "Sphere"];
 
-const shapes = (type: string) => {
-  if (type.includes("introduction")) {
-    let { question, answer } = introduction();
-    return { question, answer };
-  }
+const shapes = (type: string): Result => {
+  let question = "";
+  let answer = "";
+  if (type.includes("introduction")) ({ question, answer } = introduction());
+
+  return { question, answer };
 }
 
 const introduction = (): Result => {
