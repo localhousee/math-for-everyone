@@ -1,6 +1,7 @@
 import { getRandomTheory } from "./helpers";
 import { wholeNumber } from "./numbers";
 import { additionAndSubtraction } from "./arithmetic";
+import shapes from "./shapes";
 
 export function generateQuestion(level: number) {
   const theory = getRandomTheory(level - 1);
@@ -9,16 +10,15 @@ export function generateQuestion(level: number) {
     const limit = theory.description.split(" ").pop()!;
     let { question, answer } = wholeNumber(parseInt(limit));
     return { title, question, answer };
-  } else if (theory.name = "addition and subtraction") {
+  } else if (theory.name === "addition and subtraction") {
     const limit = theory.description.split(" ").pop()!;
     let { question, answer } = additionAndSubtraction(parseInt(limit));
     return { title, question, answer };
+  } else if (theory.name === "shapes") {
+    const type = title.split(" ").shift()!.toLowerCase();
+    let { question, answer } = shapes(type)!;
+    return { title, question, answer };
   }
-  // } else if (title.includes("two-dimentional and three-dimentional")) {
-  //   const type = title.split(" ").shift()!;
-  //   let result = dimentionalFigure(type)!;
-  //   description = result[0];
-  //   answer = result[1];
   // } else if (title.includes("length, weight, time")) {
   //   const type = title.split(" ").shift()!;
   //   let result = lengthWeightAndTemperature(type)!;
@@ -30,22 +30,6 @@ export function generateQuestion(level: number) {
   //   answer = result[1];
   // }
 };
-
-// const additionAndSubtraction = (limit: number) => {
-//   let answer = 0;
-//   let first = 0;
-//   let second = 0;
-//   let operator = false;
-//   while (answer <= 0 || answer > 20) {
-//     first = getRandomNumber(1, limit);
-//     second = getRandomNumber(1, limit);
-//     operator = Math.random() < 0.5;
-//     answer = operator ? first - second : first + second;
-//   }
-//   const questionText = `<p class="text-center">${first} ${operator ? "-" : "+"} ${second} = ?</p>`;
-//   const result = [questionText, answer.toString()];
-//   return result;
-// }
 
 // const dimentionalFigure = (type: string) => {
 //   let answer = "";

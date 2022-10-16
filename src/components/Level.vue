@@ -15,7 +15,7 @@ problem.value = generateQuestion(level);
 const userInput = ref("");
 const isWrong = ref(false);
 const checkAnswer = () => {
-  if (userInput.value !== problem.value.answer) {
+  if (userInput.value.toLowerCase() !== problem.value.answer) {
     isWrong.value = true;
     setTimeout(() => isWrong.value = false, 3000);
   } else {

@@ -8,10 +8,10 @@ const level = [
 			name: "addition and subtraction",
 			description: "Addition and subtraction of whole number until 20"
 		},
-		// {
-		// 	name: "shapes",
-		// 	description: "Introduction to two-dimentional and three-dimentional figure"
-		// },
+		{
+			name: "shapes",
+			description: "Introduction to two-dimentional and three-dimentional figure"
+		},
 		// {
 		// 	name: "measurements",
 		// 	description: "Comparing length, weight, time, and temperature"
