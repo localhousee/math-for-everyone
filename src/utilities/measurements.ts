@@ -86,7 +86,7 @@ const compare = (): Result => {
 const determine = (): Result => {
   firstNumber = getRandomNumber(1, 100);
 
-  const question = questionFormat(`${firstNumber} ${firstUnit} = ... ${secondUnit}?`);
+  const question = questionFormat(`${firstNumber} ${firstUnit.name} = ... ${secondUnit.name}?`);
 
   /**
    * Basic convertion unit
