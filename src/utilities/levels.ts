@@ -32,7 +32,11 @@ const level = [
 			type: "arithmetic",
 			description: "Addition and subtraction of whole number until 100",
 		},
-    // "Multiplication and division of whole number until 100",
+		{
+			name: "multiplication and division",
+			type: "arithmetic",
+			description: "Multiplication and division of whole number until 100",
+		}
     // "Determine length, weight, and time in standard units",
     // "Introduction to the fractions 1/2, 1/3 , and 1/4",
     // "Characteristics of two-dimentional and three-dimentional figure"
