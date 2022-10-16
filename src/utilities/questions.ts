@@ -1,97 +1,37 @@
 import { getRandomTheory } from "./helpers";
-import { wholeNumber } from "./numbers";
-import { additionAndSubtraction } from "./arithmetic";
+import numbers from "./numbers";
+import arithmetic from "./arithmetic";
 import shapes from "./shapes";
-import { measurements } from "./measurements";
+import measurements from "./measurements";
 
 export function generateQuestion(level: number) {
   const theory = getRandomTheory(level - 1);
   const title = theory.description;
-  if (theory.name === "whole number") {
-    const limit = theory.description.split(" ").pop()!;
-    let { question, answer } = wholeNumber(parseInt(limit));
-    return { title, question, answer };
-  } else if (theory.name === "addition and subtraction") {
-    const limit = theory.description.split(" ").pop()!;
-    let { question, answer } = additionAndSubtraction(parseInt(limit));
-    return { title, question, answer };
-  } else if (theory.name === "shapes") {
-    const type = title.split(" ").shift()!.toLowerCase();
-    let { question, answer } = shapes(type)!;
-    return { title, question, answer };
-  } else if (theory.name === "measurements") {
-    const type = title.split(" ").shift()!.toLowerCase();
-    let { question, answer } = measurements(type)!;
-    return { title, question, answer };
+  let question = "";
+  let answer = "";
+  let type = "";
+  let limit = 0;
+
+  switch (theory.type) {
+    case "numbers":
+      limit = parseInt(theory.description.split(" ").pop()!);
+      ({ question, answer } = numbers(theory.name, limit));
+      break;
+    case "arithmetic":
+      limit = parseInt(theory.description.split(" ").pop()!);
+      ({ question, answer } = arithmetic(theory.name, limit));
+      break;
+    case "shapes":
+      ({ question, answer } = shapes(theory.name));
+      break;
+    case "measurements":
+      type = theory.description.split(" ").shift()!.toLowerCase();
+      ({ question, answer } = measurements(type));
+      break;
   }
-  // } else if (title.includes("length, weight, time")) {
-  //   const type = title.split(" ").shift()!;
-  //   let result = lengthWeightAndTemperature(type)!;
-  //   description = result[0];
-  //   answer = result[1];
-  // } else if (title.includes("Multiplication and division of whole number until")) {
-  //   let result = multiplicationAndDivision(100)!;
-  //   description = result[0];
-  //   answer = result[1];
-  // }
+  return { title, question, answer };
 };
 
-// const dimentionalFigure = (type: string) => {
-//   let answer = "";
-//   const twoDimentional = ["circle", "kite", "parallelogram", "rectangle", "rhombus", "square", "trapezoid", "triangle"];
-//   const threeDimentional = ["cone", "cube", "cylinder", "rectangle prism", "sphere"];
-//   const shape = Math.random() < 0.5;
-//   if (type === "Introduction") {
-//     if (shape) {
-//       answer = twoDimentional[getRandomNumber(0, twoDimentional.length - 1)];
-//     } else {
-//       answer = threeDimentional[getRandomNumber(0, threeDimentional.length - 1)].replace(" ", "-");
-//     }
-//     const questionText = `<img src="/dimentional-figure/${answer}.png" alt="image" class="w-1/2 h-1/2 mx-auto" />`;
-//     const result: [string, string] = [questionText, answer];
-//     return result;
-//   }
-// }
-
-// const lengthWeightAndTemperature = (type: string) => {
-//   type Unit = { name: string; count: number };
-//   const lengths: Unit[] = [{ name: "Inch", count: 2.5 }, { name: "Feet", count: 30 }, { name: "Yard", count: 90 }, { name: "Miles", count: 16000 }];
-//   const temperatures: Unit[] = [{ name: "Celcius", count: 5 }, { name: "Kelvin", count: 5 }, { name: "Reamur", count: 4 }, { name: "Fahrenheit", count: 9 }];
-//   const weights: Unit[] = [{ name: "Tonne", count: 1000000000 }, { name: "Ounce", count: 28349.5 }, { name: "Pound", count: 453592 }, { name: "Kilogram", count: 1000000 }, { name: "Hectogram", count: 100000 }, { name: "Gram", count: 1000 }, { name: "Decigram", count: 100 }, { name: "Centigram", count: 10 }, { name: "Miligram", count: 1 }];
-//   const lengthsOfTime: Unit[] = [{ name: "Second", count: 1 }, { name: "Minute", count: 60 }, { name: "Hour", count: 3600 }, { name: "Day", count: 86400 }, { name: "Month", count: 2592000 }, { name: "Year", count: 31104000 }];
-
-//   let firstNumber = 0;
-//   let secondNumber = 0;
-//   let firstUnit: Unit = { name: "", count: 0 };
-//   let secondUnit: Unit = { name: "", count: 0 };
-//   let arr: Unit[] = [];
-  
-//   if (type === "Comparing") {
-//     const choice = getRandomNumber(1, 4);
-//     if (choice === 1) arr = lengths;
-//     else if (choice === 2) arr = weights;
-//     else if (choice === 3) arr = lengthsOfTime;
-//     else if (choice === 4) arr = temperatures;
-
-//     firstUnit = arr[getRandomNumber(0, arr.length - 1)];
-//     secondUnit = arr[getRandomNumber(0, arr.length - 1)];
-//     if (firstUnit.count < secondUnit.count) {
-//       firstNumber = getRandomNumber(10, 100);
-//       secondNumber = getRandomNumber(1, 10);
-//     } else {
-//       firstNumber = getRandomNumber(1, 10);
-//       secondNumber = getRandomNumber(10, 100);
-//     }
-  
-//     if (firstUnit.name === "Fahrenheit") firstNumber += 32;
-//     else if (secondUnit.name === "Fahrenheit") secondNumber += 32;
-//     else if (firstUnit.name === "Kelvin") firstNumber += 273;
-//     else if (secondUnit.name === "Kelvin") secondNumber += 273;
-
-//     const answer = firstNumber * firstUnit.count > secondNumber * secondUnit.count ? ">" : "<";
-//     const questionText = `<p class="text-center">Type "<" or ">" <br /> ${firstNumber} ${firstUnit.name} ... ${secondNumber} ${secondUnit.name}</p>`;
-//     const result: [string, string] = [questionText, answer];
-//     return result;
 //   } else if (type === "Determine") {
 //     const choice = getRandomNumber(1, 3);
 //     if (choice === 1) arr = lengths;
