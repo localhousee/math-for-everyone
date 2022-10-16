@@ -36,11 +36,11 @@ const lengthsOfTime: Unit[] = [
   { name: "Second", count: 1 },
 ];
 
-export const measurements = (type: string): Result => {
-  if (type.toLowerCase() === "comparing") {
-    let { question, answer } = compare();
-    return { question, answer };
-  }
+const measurements = (type: string): Result => {
+  let question = "";
+  let answer = "";
+  if (type.toLowerCase() === "comparing") ({ question, answer } = compare());
+  return { question, answer };
 }
 
 const compare = (): Result => {
@@ -87,3 +87,5 @@ const compare = (): Result => {
 
   return { question, answer };
 }
+
+export default measurements;
