@@ -17,4 +17,6 @@ export const getRandomTheory = (value: number): Theory => {
   return theory[getRandomNumber(0, theory.length - 1)];
 }
 
+export const getRandomBoolean = (): boolean => Math.random() < 0.5;
+
 export const questionFormat = (question: string): string => `<p class="text-center">${question}</p>`;
