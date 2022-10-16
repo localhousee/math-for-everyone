@@ -1,4 +1,4 @@
-import { getRandomNumber, questionFormat } from "./helpers";
+import { getRandomBoolean, getRandomNumber, questionFormat } from "./helpers";
 
 const numbers = (type: string, limit: number): Result => {
   let question = "";
@@ -9,28 +9,20 @@ const numbers = (type: string, limit: number): Result => {
   return { question, answer };
 }
 const wholeNumber = (limit: number): Result => {
-  let answer = 0;
   let start = 0;
   let step = 0;
-  let isMinus = false;
+  let isMinus = getRandomBoolean();
 
   // To prevent value goes negative and above limit
-  while (answer <= 0 || start + step > limit) {
+  while (start - step <= 0 || start + step > limit) {
     start = getRandomNumber(0, limit);
     step = getRandomNumber(1, 4);
-
-    // 50% chance to get plus or minus
-    isMinus = Math.random() < 0.5;
-
-    answer = isMinus ? start - step : start + step;
   }
-
+  
   const question = questionFormat(`What's ${step} number ${isMinus ? "before" : "after"} ${start}?`);
+  const answer = (isMinus ? start - step : start + step).toString();
 
-  return {
-    question: question,
-    answer: answer.toString()
-  };
+  return { question, answer };
 }
 
 export default numbers;

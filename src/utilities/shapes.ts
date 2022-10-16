@@ -1,19 +1,19 @@
-import { getRandomNumber, questionFormat } from "./helpers";
+import { getRandomNumber, getRandomBoolean, questionFormat } from "./helpers";
 
 const twoDimentional = ["Circle", "Kite", "Parallelogram", "Rectangle", "Rhombus", "Square", "Trapezoid", "Triangle"];
 const threeDimentional = ["Cone", "Cube", "Cylinder", "Rectangle Prism", "Sphere"];
 
+let answer = "";
+let question = "";
+
 const shapes = (type: string): Result => {
-  let question = "";
-  let answer = "";
   if (type.includes("introduction")) ({ question, answer } = introduction());
 
   return { question, answer };
 }
 
 const introduction = (): Result => {
-  let answer = "";
-  const is2D = Math.random() < 0.5;
+  const is2D = getRandomBoolean();
 
   if (is2D) answer = twoDimentional[getRandomNumber(0, twoDimentional.length - 1)].toLowerCase()
   else answer = threeDimentional[getRandomNumber(0, threeDimentional.length - 1)].replace(" ", "-").toLowerCase(); 
