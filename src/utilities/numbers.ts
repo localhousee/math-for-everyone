@@ -4,7 +4,8 @@ const numbers = (type: string, limit: number): Result => {
   let question = "";
   let answer = "";
 
-  if(type === "whole number") ({ question, answer } = wholeNumber(limit));
+  if (type === "whole number") ({ question, answer } = wholeNumber(limit));
+  else if (type === "1/2, 1/3, 1/4") ({ question, answer } = halvesThirdsAndFourths());
 
   return { question, answer };
 }
@@ -21,6 +22,20 @@ const wholeNumber = (limit: number): Result => {
   
   const question = questionFormat(`What's ${step} number ${isMinus ? "before" : "after"} ${start}?`);
   const answer = (isMinus ? start - step : start + step).toString();
+
+  return { question, answer };
+}
+const halvesThirdsAndFourths = (): Result => {
+  let fractions = getRandomNumber(2, 4);
+  let number = getRandomNumber(1, 100);
+  
+  while (number % fractions !== 0) {
+    fractions = getRandomNumber(2, 4);
+    number = getRandomNumber(1, 100);
+  }
+
+  const question = questionFormat(`1/${fractions} of ${number} is ... ?`);
+  const answer = (number / fractions).toString();
 
   return { question, answer };
 }

@@ -41,8 +41,12 @@ const level = [
 			name: "determine",
 			type: "measurements",
 			description: "Determine length, weight, and time in standard units",
-		}
-    // "Introduction to the fractions 1/2, 1/3 , and 1/4",
+		},
+		{
+			name: "1/2, 1/3, 1/4",
+			type: "numbers",
+			description: "Introduction to the fractions 1/2, 1/3 , and 1/4",
+		},
     // "Characteristics of two-dimentional and three-dimentional figure"
   ],
   // [
