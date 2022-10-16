@@ -8,6 +8,7 @@ export const getRandomNumber = (min: number, max: number): number => {
 
 interface Theory {
   name: string;
+  type: string;
   description: string;
 };
 
