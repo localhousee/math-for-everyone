@@ -2,29 +2,41 @@ const level = [
   [
 		{
 			name: "whole number",
+			type: "numbers",
 			description: "Introduction to whole number until 50"
 		},
 		{
 			name: "addition and subtraction",
+			type: "arithmetic",
 			description: "Addition and subtraction of whole number until 20"
 		},
 		{
-			name: "shapes",
+			name: "introduction",
+			type: "shapes",
 			description: "Introduction to two-dimentional and three-dimentional figure"
 		},
 		{
-			name: "measurements",
-			description: "Comparing length, weight, time, and temperature"
+			name: "comparing",
+			type: "measurements",
+			description: "Comparing length, weight, and time"
 		}
   ],
-  // [
-  //   "Introduction to whole number until 100",
-  //   "Addition and subtraction of whole number until 100",
-  //   "Multiplication and division of whole number until 100",
-  //   "Determine length, weight, and time in standard units",
-  //   "Introduction to the fractions 1/2, 1/3 , and 1/4",
-  //   "Characteristics of two-dimentional and three-dimentional figure"
-  // ],
+	[
+		{
+			name: "whole number",
+			type: "numbers",
+			description: "Introduction to whole number until 100",
+		},
+		{
+			name: "addition and subtraction",
+			type: "arithmetic",
+			description: "Addition and subtraction of whole number until 100",
+		},
+    // "Multiplication and division of whole number until 100",
+    // "Determine length, weight, and time in standard units",
+    // "Introduction to the fractions 1/2, 1/3 , and 1/4",
+    // "Characteristics of two-dimentional and three-dimentional figure"
+  ],
   // [
 	// 	"Introduction to whole numbers up to 1000 and simple fractions",
 	// 	"Relationship between standard units for length, weight, and time",
