@@ -7,3 +7,10 @@ it("result of addition or subtraction is whole number, above 0, and below limit 
   expect(parseInt(answer)).to.be.least(1);
   expect(Number.isSafeInteger(parseInt(answer))).toBe(true);
 });
+
+it("result of multiplication or division is whole number, above 0, and below limit parameter", () => {
+  let { question, answer } = arithmetic("addition and subtraction", 100);
+  expect(parseInt(answer)).to.be.below(100);
+  expect(parseInt(answer)).to.be.least(1);
+  expect(Number.isSafeInteger(parseInt(answer))).toBe(true);
+});
