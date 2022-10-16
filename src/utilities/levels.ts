@@ -47,7 +47,11 @@ const level = [
 			type: "numbers",
 			description: "Introduction to the fractions 1/2, 1/3 , and 1/4",
 		},
-    // "Characteristics of two-dimentional and three-dimentional figure"
+		{
+			name: "characteristic",
+			type: "shapes",
+			description: "Characteristics of two-dimentional and three-dimentional figure"
+		},
   ],
   // [
 	// 	"Introduction to whole numbers up to 1000 and simple fractions",
