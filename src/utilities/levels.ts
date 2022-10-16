@@ -12,10 +12,10 @@ const level = [
 			name: "shapes",
 			description: "Introduction to two-dimentional and three-dimentional figure"
 		},
-		// {
-		// 	name: "measurements",
-		// 	description: "Comparing length, weight, time, and temperature"
-		// }
+		{
+			name: "measurements",
+			description: "Comparing length, weight, time, and temperature"
+		}
   ],
   // [
   //   "Introduction to whole number until 100",

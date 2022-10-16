@@ -2,6 +2,7 @@ import { getRandomTheory } from "./helpers";
 import { wholeNumber } from "./numbers";
 import { additionAndSubtraction } from "./arithmetic";
 import shapes from "./shapes";
+import { measurements } from "./measurements";
 
 export function generateQuestion(level: number) {
   const theory = getRandomTheory(level - 1);
@@ -17,6 +18,10 @@ export function generateQuestion(level: number) {
   } else if (theory.name === "shapes") {
     const type = title.split(" ").shift()!.toLowerCase();
     let { question, answer } = shapes(type)!;
+    return { title, question, answer };
+  } else if (theory.name === "measurements") {
+    const type = title.split(" ").shift()!.toLowerCase();
+    let { question, answer } = measurements(type)!;
     return { title, question, answer };
   }
   // } else if (title.includes("length, weight, time")) {
