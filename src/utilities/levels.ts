@@ -59,7 +59,11 @@ const level = [
 			type: "numbers",
 			description: "Introduction to whole numbers up to 1000 and simple fractions",
 		},
-		// "Relationship between standard units for length, weight, and time",
+		{
+			name: "relationship between units",
+			type: "measurements",
+			description: "Relationship between standard units for length, weight, and time",
+		}
 		// "Simetri lipat dan simetri putar pada bangun datar",
 		// "Introduction to angles and types of angles",
 		// "Characteristics of various two-dimentional figure",

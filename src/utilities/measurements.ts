@@ -2,24 +2,17 @@ import { getRandomNumber, getRandomBoolean, questionFormat } from "./helpers";
 
 type Unit = { name: string; count: number };
 const lengths: Unit[] = [
-  { name: "Miles", count: 1609340 },
   { name: "Kilometer", count: 1000000 },
   { name: "Hectometer", count: 100000 },
   { name: "Dekameter", count: 10000 },
   { name: "Meter", count: 1000 },
-  { name: "Yard", count: 900 },
-  { name: "Feet", count: 300 },
   { name: "Decimeter", count: 100 },
-  { name: "Inch", count: 25 },
   { name: "Centimeter", count: 10 },
   { name: "Milimeter", count: 1 },
 ];
 const weights: Unit[] = [
-  { name: "Tonne", count: 1000000000 },
   { name: "Kilogram", count: 1000000 },
   { name: "Hectogram", count: 100000 },
-  { name: "Pound", count: 453590 },
-  { name: "Ounce", count: 28350 },
   { name: "Dekagram", count: 10000 },
   { name: "Gram", count: 1000 },
   { name: "Decigram", count: 100 },
@@ -55,6 +48,7 @@ const measurements = (type: string): Result => {
   let answer = "";
   if (type.toLowerCase() === "comparing") ({ question, answer } = compare());
   else if (type.toLowerCase() === "determine") ({ question, answer } = determine());
+  else if (type.toLowerCase() === "relationship") ({ question, answer } = determine(true));
   return { question, answer };
 }
 
@@ -83,8 +77,20 @@ const compare = (): Result => {
   return { question, answer };
 }
 
-const determine = (): Result => {
+const determine = (advanced?: boolean): Result => {
+  let answer = "";
   firstNumber = getRandomNumber(1, 100);
+
+  /**
+   * If its advanced, then just pick a random unit at both side
+   * That's why i call it "Advanced" lol
+   */ 
+  if (advanced) {
+    firstUnit = arr[getRandomNumber(0, arr.length - 1)];
+    firstUnit = arr[getRandomNumber(0, arr.length - 1)];
+  }
+
+  answer = (firstNumber * firstUnit.count / secondUnit.count).toString();
 
   const question = questionFormat(`${firstNumber} ${firstUnit.name} = ... ${secondUnit.name}?`);
 
@@ -94,7 +100,6 @@ const determine = (): Result => {
    * 
    * Result: 20 * 1000000 / 10000 = 2000 Dekameter
    */
-  const answer = (firstNumber * firstUnit.count / secondUnit.count).toString();
 
   return { question, answer };
 }
