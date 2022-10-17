@@ -41,7 +41,7 @@ const halvesThirdsAndFourths = (): Result => {
   return { question, answer };
 }
 const fractions = (denominator: number): Result => {
-  const value = getRandomNumber(1, denominator);
+  const value = getRandomNumber(2, denominator);
   const question = questionFormat(`<img src="/fractions/1-${value}.jpg" alt="fractions" class="w-1/4 h-1/4 mx-auto" />`);
   const answer = `1/${value}`;
   return { question, answer };
