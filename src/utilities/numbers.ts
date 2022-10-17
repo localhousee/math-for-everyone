@@ -1,11 +1,12 @@
 import { getRandomBoolean, getRandomNumber, questionFormat } from "./helpers";
 
+
 const numbers = (type: string, limit: number): Result => {
   let question = "";
   let answer = "";
-
   if (type === "whole number") ({ question, answer } = wholeNumber(limit));
   else if (type === "1/2, 1/3, 1/4") ({ question, answer } = halvesThirdsAndFourths());
+  else if (type === "whole numbers and simple fractions") ({ question, answer } = wholeNumberAndFractions(1000, 10));
 
   return { question, answer };
 }
@@ -37,6 +38,20 @@ const halvesThirdsAndFourths = (): Result => {
   const question = questionFormat(`1/${fractions} of ${number} is ... ?`);
   const answer = (number / fractions).toString();
 
+  return { question, answer };
+}
+const fractions = (denominator: number): Result => {
+  const value = getRandomNumber(1, denominator);
+  const question = questionFormat(`<img src="/fractions/1-${value}.jpg" alt="fractions" class="w-1/4 h-1/4 mx-auto" />`);
+  const answer = `1/${value}`;
+  return { question, answer };
+}
+const wholeNumberAndFractions = (limit: number, denominator: number): Result => {
+  let question = "";
+  let answer = "";
+  const isWholeNumber = getRandomBoolean();
+  if (isWholeNumber) ({ question, answer } = wholeNumber(limit));
+  else ({ question, answer } = fractions(denominator));
   return { question, answer };
 }
 

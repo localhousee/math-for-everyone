@@ -53,14 +53,18 @@ const level = [
 			description: "Characteristics of two-dimentional and three-dimentional figure"
 		},
   ],
-  // [
-	// 	"Introduction to whole numbers up to 1000 and simple fractions",
-	// 	"Relationship between standard units for length, weight, and time",
-	// 	"Simetri lipat dan simetri putar pada bangun datar",
-	// 	"Introduction to angles and types of angles",
-	// 	"Characteristics of various two-dimentional figure",
-	// 	"Introduction to simple drawing diagrams"
-	// ],
+	[
+		{
+			name: "whole numbers and simple fractions",
+			type: "numbers",
+			description: "Introduction to whole numbers up to 1000 and simple fractions",
+		},
+		// "Relationship between standard units for length, weight, and time",
+		// "Simetri lipat dan simetri putar pada bangun datar",
+		// "Introduction to angles and types of angles",
+		// "Characteristics of various two-dimentional figure",
+		// "Introduction to simple drawing diagrams"
+	],
   // [
 	// 	"Introduction of equivalent fractions with pictures",
 	// 	"Determine factor, common factor, Greatest Common Divisor (GCD), and Least Common Multiple (LCM)",
