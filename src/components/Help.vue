@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { arrayOfLevels } from "@/utilities/questions";
+import arrayOfLevel from "@/utilities/levels";
 import Main from "@/layouts/Main.vue";
 
-const levels = arrayOfLevels;
+const levels = arrayOfLevel;
 const level = ref(0);
 const showLevelDescription = ref(false);
 
