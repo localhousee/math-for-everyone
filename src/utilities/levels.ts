@@ -68,8 +68,12 @@ const level = [
 			name: "symmetry",
 			type: "shapes",
 			description: "symmetry on two-dimentional figure",
+		},
+		{
+			name: "angles",
+			type: "shapes",
+			description: "Introduction to angles and types of angles",
 		}
-		// "Introduction to angles and types of angles",
 		// "Characteristics of various two-dimentional figure",
 		// "Introduction to simple drawing diagrams"
 	],

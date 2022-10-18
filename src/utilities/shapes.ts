@@ -133,8 +133,9 @@ else arr = threeDimentional;
 
 const shapes = (type: string): Result => {
   if (type.includes("introduction")) ({ question, answer } = introduction());
-  if (type.includes("characteristic")) ({ question, answer } = characteristic());
-  if (type.includes("symmetry")) ({ question, answer } = symmetry());
+  else if (type.includes("characteristic")) ({ question, answer } = characteristic());
+  else if (type.includes("symmetry")) ({ question, answer } = symmetry());
+  else if (type.includes("angles")) ({ question, answer } = angles());
   return { question, answer };
 }
 
@@ -153,6 +154,12 @@ const symmetry = (): Result => {
   const chosenShape = arr[getRandomNumber(0, arr.length - 1)];
   question = questionFormat(`How much symmetry in ${chosenShape.name}?`);
   answer = chosenShape.symmetry!.toString();
+  return { question, answer };
+}
+const angles = (): Result => {
+  const angles = ["Acute", "Right", "Obtuse", "Straight", "Reflex", "Complete rotation"];
+  const answer = angles[getRandomNumber(0, angles.length - 1)].toLowerCase().replace(" ", "-");
+  const question = questionFormat(`<img src="/angles/${answer}.png" alt="image" class="w-1/4 h-1/4 mx-auto" />`);
   return { question, answer };
 }
 
