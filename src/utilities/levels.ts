@@ -63,8 +63,12 @@ const level = [
 			name: "relationship between units",
 			type: "measurements",
 			description: "Relationship between standard units for length, weight, and time",
+		},
+		{
+			name: "symmetry",
+			type: "shapes",
+			description: "symmetry on two-dimentional figure",
 		}
-		// "Simetri lipat dan simetri putar pada bangun datar",
 		// "Introduction to angles and types of angles",
 		// "Characteristics of various two-dimentional figure",
 		// "Introduction to simple drawing diagrams"
