@@ -73,8 +73,12 @@ const level = [
 			name: "angles",
 			type: "shapes",
 			description: "Introduction to angles and types of angles",
-		}
-		// "Characteristics of various two-dimentional figure",
+		},
+		{
+			name: "characteristic advanced",
+			type: "shapes",
+			description: "Characteristics of various two-dimentional figure"
+		},
 		// "Introduction to simple drawing diagrams"
 	],
   // [

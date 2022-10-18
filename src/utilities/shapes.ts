@@ -133,7 +133,10 @@ else arr = threeDimentional;
 
 const shapes = (type: string): Result => {
   if (type.includes("introduction")) ({ question, answer } = introduction());
-  else if (type.includes("characteristic")) ({ question, answer } = characteristic());
+  else if (type.includes("characteristic")) {
+    if (type.includes("advanced")) ({ question, answer } = characteristic(true));
+    else ({ question, answer } = characteristic());
+  }
   else if (type.includes("symmetry")) ({ question, answer } = symmetry());
   else if (type.includes("angles")) ({ question, answer } = angles());
   return { question, answer };
@@ -144,10 +147,16 @@ const introduction = (): Result => {
   const question = questionFormat(`<img src="/dimentional-figure/${answer}.png" alt="image" class="w-1/2 h-1/2 mx-auto" />`);
   return { question, answer };
 }
-const characteristic = (): Result => {
-  const chosenShape = arr[getRandomNumber(0, arr.length - 1)];
-  question = questionFormat(`What shape is it based on this properties? <br/> ${chosenShape.properties.join("<br />")}`);
-  answer = chosenShape.name.toLowerCase();
+const characteristic = (advanced?: boolean): Result => {
+  if (advanced) {
+    const chosenShape = twoDimentional[getRandomNumber(0, twoDimentional.length - 1)];
+    question = questionFormat(`What shape is it based on this properties? <br/> ${chosenShape.properties.join("<br />")}`);
+    answer = chosenShape.name.toLowerCase();
+  } else {
+    const chosenShape = arr[getRandomNumber(0, arr.length - 1)];
+    question = questionFormat(`What shape is it based on this properties? <br/> ${chosenShape.properties.join("<br />")}`);
+    answer = chosenShape.name.toLowerCase();
+  }
   return { question, answer };
 }
 const symmetry = (): Result => {
