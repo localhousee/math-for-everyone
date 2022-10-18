@@ -3,22 +3,22 @@ const level = [
 		{
 			name: "whole number",
 			type: "numbers",
-			description: "Introduction to whole number until 50"
+			description: "Introduction to whole number until 50",
 		},
 		{
 			name: "addition and subtraction",
 			type: "arithmetic",
-			description: "Addition and subtraction of whole number until 20"
+			description: "Addition and subtraction of whole number until 20",
 		},
 		{
 			name: "introduction",
 			type: "shapes",
-			description: "Introduction to two-dimentional and three-dimentional figure"
+			description: "Introduction to two-dimentional and three-dimentional figure",
 		},
 		{
 			name: "comparing",
 			type: "measurements",
-			description: "Comparing length, weight, and time"
+			description: "Comparing length, weight, and time",
 		}
   ],
 	[
@@ -38,26 +38,16 @@ const level = [
 			description: "Multiplication and division of whole number until 100",
 		},
 		{
-			name: "determine",
-			type: "measurements",
-			description: "Determine length, weight, and time in standard units",
-		},
-		{
-			name: "1/2, 1/3, 1/4",
+			name: "introduction to fractions",
 			type: "numbers",
-			description: "Introduction to the fractions 1/2, 1/3 , and 1/4",
-		},
-		{
-			name: "characteristic",
-			type: "shapes",
-			description: "Characteristics of two-dimentional and three-dimentional figure"
+			description: "Introduction to 1/2, 1/3, and 1/4",
 		},
   ],
 	[
 		{
-			name: "whole numbers and simple fractions",
+			name: "simple fractions and whole number",
 			type: "numbers",
-			description: "Introduction to whole numbers up to 1000 and simple fractions",
+			description: "Introduction to simple fractions and whole numbers up to 1000",
 		},
 		{
 			name: "relationship between units",
@@ -67,7 +57,7 @@ const level = [
 		{
 			name: "symmetry",
 			type: "shapes",
-			description: "symmetry on two-dimentional figure",
+			description: "Symmetry on two-dimentional figure",
 		},
 		{
 			name: "angles",
@@ -75,21 +65,24 @@ const level = [
 			description: "Introduction to angles and types of angles",
 		},
 		{
-			name: "characteristic advanced",
+			name: "characteristic",
 			type: "shapes",
-			description: "Characteristics of various two-dimentional figure"
+			description: "Characteristics of various two-dimentional figure",
 		},
-		// "Introduction to simple drawing diagrams"
 	],
-  // [
-	// 	"Introduction of equivalent fractions with pictures",
-	// 	"Determine factor, common factor, Greatest Common Divisor (GCD), and Least Common Multiple (LCM)",
-	// 	"Rounding up the results of length and weight measurements",
-	// 	"Perimeter and area of squares, rectangles and triangles",
-	// 	"Squared numbers and square root numbers",
-	// 	"Simple bar chart introduction",
-	// 	"Determine the size of the angle on a two-dimentional figure in standard units"
-	// ],
+	[
+		{
+			name: "simple fractions with image",
+			type: "numbers",
+			description: "Introduction of equivalent fractions with pictures",
+		},
+		// "Determine factor, common factor, Greatest Common Divisor (GCD), and Least Common Multiple (LCM)",
+		// "Rounding up the results of length and weight measurements",
+		// "Perimeter and area of squares, rectangles and triangles",
+		// "Squared numbers and square root numbers",
+		// "Simple bar chart introduction",
+		// "Determine the size of the angle on a two-dimentional figure in standard units"
+	],
   // [
 	// 	"Adding and subtracting two fractions with different denominators",
 	// 	"Introduction to decimal fractions and percent",
