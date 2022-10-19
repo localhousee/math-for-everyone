@@ -76,7 +76,11 @@ const level = [
 			type: "numbers",
 			description: "Introduction of equivalent fractions with pictures",
 		},
-		// "Determine factor, common factor, Greatest Common Divisor (GCD), and Least Common Multiple (LCM)",
+		{
+			name: "factor, gcd, lcm",
+			type: "arithmetic",
+			description: "Determine factor, Greatest Common Divisor (GCD), and Least Common Multiple (LCM)",
+		},
 		// "Rounding up the results of length and weight measurements",
 		// "Perimeter and area of squares, rectangles and triangles",
 		// "Squared numbers and square root numbers",

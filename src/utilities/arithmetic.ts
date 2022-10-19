@@ -5,7 +5,7 @@ const arithmetic = (type: string, limit: number): Result => {
   let answer = "";
   if (type === "addition and subtraction") ({ question, answer } = additionAndSubtraction(limit));
   else if (type === "multiplication and division") ({ question, answer } = multiplicationAndDivision(limit));
-
+  else if (type.includes("factor, gcd, lcm")) ({ question, answer } = factorGcdAndLcm());
   return { question, answer };
 }
 const additionAndSubtraction = (limit: number): Result => {
@@ -49,6 +49,58 @@ const multiplicationAndDivision = (limit: number): Result => {
   const question = questionFormat(`${firstNumber} ${isMultiply ? "x" : "/"} ${secondNumber} = ... ?`);
   const answer = (isMultiply ? firstNumber * secondNumber : firstNumber / secondNumber).toString();
   return { question, answer }
+}
+const factor = (): Result => {
+  let number = getRandomNumber(10, 100);
+  let result = [];
+
+  while (result.length <= 2) {
+    for (let i = 0; i < number; i++) {
+      if (number % i === 0) result.push(i);
+    }
+  }
+
+  const question = questionFormat(`Factors of ${number} are ...?<br/> Separate each number with exactly 1 comma and 1 space<br/> For example: 1, 2, 3, 4, 5`);
+  const answer = result.join(", ");
+
+  return { question, answer };
+};
+const calculateGCD = (first: number, second: number): number => {
+  return first ? calculateGCD(second % first, first) : second;
+}
+const GCD = (): Result => {
+  let firstNumber = getRandomNumber(10, 100);
+  let secondNumber = getRandomNumber(10, 100);
+
+  while (firstNumber < secondNumber) {
+    firstNumber = getRandomNumber(10, 100);
+    secondNumber = getRandomNumber(10, 100);
+  }
+
+  const question = questionFormat(`Greatest Common Divisor of ${firstNumber} and ${secondNumber} is ...?`);
+  const answer = calculateGCD(firstNumber, secondNumber).toString();
+
+  return { question, answer };
+};
+const LCM = (): Result => {
+  let firstNumber = getRandomNumber(10, 50);
+  let secondNumber = getRandomNumber(10, 50);
+
+  const question = questionFormat(`Least Common Multiple of ${firstNumber} and ${secondNumber} is ...?`);
+  const answer = ((firstNumber * secondNumber) / calculateGCD(firstNumber, secondNumber)).toString();
+
+  return { question, answer };
+}
+const factorGcdAndLcm = (): Result => {
+  let question = "";
+  let answer = "";
+  const options = ["factor", "gcd", "lcm"];
+  const choice = getRandomNumber(0, options.length - 1);
+  if (choice === 0) ({ question, answer } = factor());
+  if (choice === 1) ({ question, answer } = GCD());
+  if (choice === 2) ({ question, answer } = LCM());
+
+  return { question, answer };
 }
 
 export default arithmetic;
