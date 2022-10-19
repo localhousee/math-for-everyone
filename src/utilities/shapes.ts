@@ -102,6 +102,7 @@ const shapes = (type: string): Result => {
   else if (type.includes("characteristic")) ({ question, answer } = characteristic());
   else if (type.includes("symmetry")) ({ question, answer } = symmetry());
   else if (type.includes("angles")) ({ question, answer } = angles());
+  else if (type.includes("perimeter and area")) ({ question, answer } = perimeterAndArea());
   return { question, answer };
 }
 
@@ -131,6 +132,47 @@ const angles = (): Result => {
   const angles = ["Acute", "Right", "Obtuse", "Straight", "Reflex", "Complete rotation"];
   const answer = angles[getRandomNumber(0, angles.length - 1)].toLowerCase().replace(" ", "-");
   const question = questionFormat(`<img src="/angles/${answer}.png" alt="image" class="w-1/4 h-1/4 mx-auto" />`);
+  return { question, answer };
+}
+const perimeterAndArea = (): Result => {
+  const shape = getRandomNumber(1, 3);
+  let result = 0;
+  let question = "";
+  if (shape === 1) { // Square 
+    const side = getRandomNumber(2, 10);
+    const isArea = getRandomBoolean();
+    if (isArea) result = Math.pow(side, 2);
+    else result = 4 * side
+    question = questionFormat(`Square: Side = ${side} cm <br />${isArea ? "Area" : "Perimeter"} = ... cm?`);
+  } else if (shape === 2) { // Rectangle
+    let firstNumber = getRandomNumber(2, 10);
+    let secondNumber = getRandomNumber(2, 10);
+
+    // Regenerate number if both number is same
+    while (firstNumber === secondNumber) {
+      secondNumber = getRandomNumber(2, 10);
+    }
+
+    const isArea = getRandomBoolean();
+    if (isArea) result = firstNumber * secondNumber;
+    else result = 2 * (firstNumber + secondNumber);
+
+    question = questionFormat(`Rectangle: Length = ${firstNumber} cm, Width = ${secondNumber} <br />${isArea ? "Area" : "Perimeter"} = ... cm?`);
+  } else { // Triangle
+    const isArea = getRandomBoolean();
+    if (isArea) {
+      let firstNumber = getRandomNumber(2, 10);
+      let secondNumber = getRandomNumber(2, 10);
+      result = firstNumber * secondNumber / 2;
+      question = questionFormat(`Triangle: Base = ${firstNumber} cm, Height = ${secondNumber} cm <br />Area = ...cm?`);
+
+    } else {
+      let number = getRandomNumber(2, 10);
+      result = 3 * number;
+      question = questionFormat(`Triangle: Side = ${number} cm <br />Perimeter = ...cm?`);
+    }
+  }
+  const answer = result.toString();
   return { question, answer };
 }
 

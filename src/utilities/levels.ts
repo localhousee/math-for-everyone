@@ -85,8 +85,12 @@ const level = [
 			name: "rounding",
 			type: "measurements",
 			description: "Rounding up the results of length and weight measurements",
+		},
+		{
+			name: "perimeter and area",
+			type: "shapes",
+			description: "Perimeter and area of squares, rectangles and triangles",
 		}
-		// "Perimeter and area of squares, rectangles and triangles",
 		// "Squared numbers and square root numbers",
 		// "Simple bar chart introduction",
 		// "Determine the size of the angle on a two-dimentional figure in standard units"
