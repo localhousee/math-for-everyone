@@ -81,7 +81,11 @@ const level = [
 			type: "arithmetic",
 			description: "Determine factor, Greatest Common Divisor (GCD), and Least Common Multiple (LCM)",
 		},
-		// "Rounding up the results of length and weight measurements",
+		{
+			name: "rounding",
+			type: "measurements",
+			description: "Rounding up the results of length and weight measurements",
+		}
 		// "Perimeter and area of squares, rectangles and triangles",
 		// "Squared numbers and square root numbers",
 		// "Simple bar chart introduction",

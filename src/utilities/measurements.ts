@@ -33,7 +33,7 @@ let firstNumber = 0;
 let secondNumber = 0;
 let arr: Unit[] = [];
 
-const choice = getRandomNumber(1, 3);
+let choice = getRandomNumber(1, 3);
 if (choice === 1) arr = lengths;
 else if (choice === 2) arr = weights;
 else if (choice === 3) arr = lengthsOfTime;
@@ -48,7 +48,7 @@ const measurements = (type: string): Result => {
   let answer = "";
   if (type.toLowerCase() === "comparing") ({ question, answer } = compare());
   else if (type.toLowerCase() === "determine") ({ question, answer } = determine());
-  else if (type.toLowerCase() === "relationship") ({ question, answer } = determine(true));
+  else if (type.toLowerCase() === "rounding") ({ question, answer } = rounding());
   return { question, answer };
 }
 
@@ -76,31 +76,36 @@ const compare = (): Result => {
 
   return { question, answer };
 }
-
-const determine = (advanced?: boolean): Result => {
-  let answer = "";
+const determine = (): Result => {
   firstNumber = getRandomNumber(1, 100);
-
-  /**
-   * If its advanced, then just pick a random unit at both side
-   * That's why i call it "Advanced" lol
-   */ 
-  if (advanced) {
-    firstUnit = arr[getRandomNumber(0, arr.length - 1)];
-    firstUnit = arr[getRandomNumber(0, arr.length - 1)];
-  }
-
-  answer = (firstNumber * firstUnit.count / secondUnit.count).toString();
+  firstUnit = arr[getRandomNumber(0, arr.length - 1)];
+  firstUnit = arr[getRandomNumber(0, arr.length - 1)];
 
   const question = questionFormat(`${firstNumber} ${firstUnit.name} = ... ${secondUnit.name}?`);
+  const answer = (firstNumber * firstUnit.count / secondUnit.count).toString();
 
-  /**
-   * Basic convertion unit
-   * For ex: 20 Kilometer = ... Dekameter?
-   * 
-   * Result: 20 * 1000000 / 10000 = 2000 Dekameter
-   */
+  return { question, answer };
+}
+const rounding = (): Result => {
+  firstNumber = getRandomNumber(10, 100);
 
+  choice = getRandomNumber(1, 2);
+  if (choice === 1) arr = lengths;
+  else arr = weights;
+
+  const firstUnitIndex = getRandomNumber(0, arr.length - 2);
+  firstUnit = arr[firstUnitIndex];
+  secondUnit = arr[getRandomNumber(0, firstUnitIndex)];
+
+  let result = 0;
+
+  while (firstUnit.name === secondUnit.name || result === 0 || result > 1000) {
+    secondUnit = arr[getRandomNumber(0, arr.length - 1)];
+    result = Math.round(firstNumber * firstUnit.count / secondUnit.count);
+  }
+
+  const question = questionFormat(`${firstNumber} ${firstUnit.name} = ... ${secondUnit.name}? Round up to nearest number`);
+  const answer = (result).toString();
   return { question, answer };
 }
 
