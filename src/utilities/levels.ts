@@ -90,8 +90,12 @@ const level = [
 			name: "perimeter and area",
 			type: "shapes",
 			description: "Perimeter and area of squares, rectangles and triangles",
+		},
+		{
+			name: "squared and square root",
+			type: "numbers",
+			description: "Squared numbers and square root numbers",
 		}
-		// "Squared numbers and square root numbers",
 		// "Simple bar chart introduction",
 		// "Determine the size of the angle on a two-dimentional figure in standard units"
 	],

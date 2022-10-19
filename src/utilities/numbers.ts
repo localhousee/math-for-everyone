@@ -7,6 +7,7 @@ const numbers = (type: string, limit: number): Result => {
   else if (type === "introduction to fractions") ({ question, answer } = fractions(4, "number"));
   else if (type.includes("simple fractions and whole number")) ({ question, answer } = wholeNumberAndFractions(limit, "number"));
   else if (type === "simple fractions with image") ({ question, answer } = fractions(10, "image"));
+  else if (type === "squared and square root") ({ question, answer } = squaredAndSquareRoot());
   return { question, answer };
 }
 const wholeNumber = (limit: number): Result => {
@@ -56,6 +57,21 @@ const wholeNumberAndFractions = (limit: number, type: string): Result => {
   const isWholeNumber = getRandomBoolean();
   if (isWholeNumber) ({ question, answer } = wholeNumber(limit));
   else ({ question, answer } = fractions(limit, type));
+  return { question, answer };
+}
+const squaredAndSquareRoot = (): Result => {
+  let firstNumber = getRandomNumber(2, 20);
+  let result = 0;
+  let question = "";
+  const isSquared = getRandomBoolean();
+  if (isSquared) result = Math.pow(firstNumber, 2);
+  else result = firstNumber;
+
+  if (result === firstNumber) question = questionFormat(`Square root of ${Math.pow(firstNumber, 2)} is ...?`);
+  else question = questionFormat(`${firstNumber} squared is ...?`);
+
+  const answer = result.toString();
+
   return { question, answer };
 }
 
