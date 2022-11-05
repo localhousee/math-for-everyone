@@ -1,16 +1,20 @@
-export const getRandomNumber = (min: number, max: number): number => {
+export function getRandomNumber(min: number, max: number): number {
   const minimum = Math.ceil(min);
   const maximum = Math.floor(max);
   return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
 }
 
 export const getRandomTheory = (value: number) => {
-  // const theory = 
-}
+  // const theory =
+};
 
 export const getRandomBoolean = (): boolean => Math.random() < 0.5;
 
-export const questionFormat = (question: string): string => `<p class="text-center">${question}</p>`;
+export const questionFormat = (question: string): string =>
+  `<p class="text-center">${question}</p>`;
+
+export const imageFormat = (image: string): string =>
+  `<img src="${image}" alt="image" class="w-1/4 h-1/4 mx-auto" />`;
 
 export const twoDimentional: Array<TwoDimention> = [
   {
@@ -27,7 +31,7 @@ export const twoDimentional: Array<TwoDimention> = [
     properties: [
       "It has four sides",
       "Four equal angles each measuring 90°",
-      "All sides are in equal length"
+      "All sides are in equal length",
     ],
     symmetry: 4,
   },
@@ -37,7 +41,7 @@ export const twoDimentional: Array<TwoDimention> = [
       "It has four sides",
       "Four equal angles each measuring 90°",
       "The opposite sides are equal in length",
-      "It has two pairs of parallel sides"
+      "It has two pairs of parallel sides",
     ],
     symmetry: 2,
   },
@@ -46,7 +50,7 @@ export const twoDimentional: Array<TwoDimention> = [
     properties: [
       "It has two pairs of parallel sides",
       "The opposite sides are equal in length",
-      "The opposite angles are of equal measure"
+      "The opposite angles are of equal measure",
     ],
     symmetry: 2,
   },
@@ -54,7 +58,7 @@ export const twoDimentional: Array<TwoDimention> = [
     name: "Rhombus",
     properties: [
       "It has four sides",
-      "It is a special type of quadrilateral whose all sides are equal in length"
+      "It is a special type of quadrilateral whose all sides are equal in length",
     ],
     symmetry: 4,
   },
@@ -63,7 +67,7 @@ export const twoDimentional: Array<TwoDimention> = [
     properties: [
       "It has four sides",
       "one pair of opposite sides parallel to each other",
-      "another sides of it are non parallel"
+      "another sides of it are non parallel",
     ],
     symmetry: 1,
   },
@@ -71,7 +75,7 @@ export const twoDimentional: Array<TwoDimention> = [
     name: "Kite",
     properties: [
       "It has four sides",
-      "Sides are grouped into two pairs of equal sides that are adjacent to each other"
+      "Sides are grouped into two pairs of equal sides that are adjacent to each other",
     ],
     symmetry: 1,
   },
@@ -100,7 +104,7 @@ export const threeDimentional: Array<ThreeDimention> = [
   },
   {
     name: "Cylinder",
-  }
+  },
 ];
 
 export const lengths: Array<Unit> = [
@@ -120,7 +124,7 @@ export const weights: Array<Unit> = [
   { name: "Gram", count: 1000 },
   { name: "Decigram", count: 100 },
   { name: "Centigram", count: 10 },
-  { name: "Miligram", count: 1 }
+  { name: "Miligram", count: 1 },
 ];
 
 export const lengthsOfTime: Array<Unit> = [
@@ -131,4 +135,13 @@ export const lengthsOfTime: Array<Unit> = [
   { name: "Hour", count: 60 * 60 },
   { name: "Minute", count: 60 },
   { name: "Second", count: 1 },
+];
+
+export const angles: Array<string> = [
+  "Acute",
+  "Right",
+  "Obtuse",
+  "Straight",
+  "Reflex",
+  "Complete rotation",
 ];
